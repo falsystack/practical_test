@@ -3,6 +3,7 @@ package jp.falsystack.cafekiosk.unit;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.time.LocalDateTime;
 import jp.falsystack.cafekiosk.unit.beverages.Americano;
 import jp.falsystack.cafekiosk.unit.beverages.Latte;
 import org.junit.jupiter.api.Test;
@@ -75,4 +76,44 @@ class CafeKioskTest {
     cafeKiosk.clear();
     assertThat(cafeKiosk.getBeverages()).hasSize(0);
   }
+
+  @Test
+  void createOrder() {
+    // 特定の条件でのみ成功するテスト -> よくないテスト
+    var cafeKiosk = new CafeKiosk();
+    var americano = new Americano();
+    cafeKiosk.add(americano);
+
+    var order = cafeKiosk.createOrder();
+
+    assertThat(order.getBeverages()).hasSize(1);
+    assertThat(order.getBeverages().get(0).getName()).isEqualTo("Americano");
+  }
+
+  @Test
+  void createOrderWithCurrentTime() {
+    var cafeKiosk = new CafeKiosk();
+    var americano = new Americano();
+    cafeKiosk.add(americano);
+
+    // 特定の条件を外部から注入することによってテストがしやすくなる。
+    var order = cafeKiosk.createOrder(LocalDateTime.of(2023,11,18,10, 0));
+
+    assertThat(order.getBeverages()).hasSize(1);
+    assertThat(order.getBeverages().get(0).getName()).isEqualTo("Americano");
+  }
+
+  @Test
+  void createOrderOutsideOpenTime() {
+    var cafeKiosk = new CafeKiosk();
+    var americano = new Americano();
+    cafeKiosk.add(americano);
+
+    // 特定の条件を外部から注入することによってテストがしやすくなる。
+    // 境界テストもできる
+    assertThatThrownBy(() -> cafeKiosk.createOrder(LocalDateTime.of(2023, 11, 18, 23, 0)))
+        .isInstanceOf(IllegalArgumentException.class)
+        .hasMessage("注文時間ではございません、管理者にお問い合わせください。");
+  }
+
 }
