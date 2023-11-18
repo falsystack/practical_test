@@ -1,6 +1,7 @@
 package jp.falsystack.cafekiosk.unit;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import jp.falsystack.cafekiosk.unit.beverages.Americano;
 import jp.falsystack.cafekiosk.unit.beverages.Latte;
@@ -25,6 +26,28 @@ class CafeKioskTest {
 
     assertThat(cafeKiosk.getBeverages()).hasSize(1);
     assertThat(cafeKiosk.getBeverages().get(0).getName()).isEqualTo("Americano");
+  }
+
+  @Test
+  void addSeveralBeverages() {
+    var cafeKiosk = new CafeKiosk();
+    var americano = new Americano();
+
+    cafeKiosk.add(americano, 2);
+
+    assertThat(cafeKiosk.getBeverages()).hasSize(2);
+    assertThat(cafeKiosk.getBeverages().get(0)).isEqualTo(americano);
+    assertThat(cafeKiosk.getBeverages().get(1)).isEqualTo(americano);
+  }
+
+  @Test
+  void addZeroBeverage() {
+    var cafeKiosk = new CafeKiosk();
+    var americano = new Americano();
+
+    assertThatThrownBy(() -> cafeKiosk.add(americano, 0)).isInstanceOf(
+            IllegalArgumentException.class)
+        .hasMessage("飲み物は１杯以上からご注文お願いします。");
   }
 
   @Test
