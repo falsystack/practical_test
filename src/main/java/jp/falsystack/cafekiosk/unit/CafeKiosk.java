@@ -20,7 +20,7 @@ public class CafeKiosk {
     beverages.remove(beverage);
   }
 
-  public void removeAll() {
+  public void clear() {
     beverages.clear();
   }
 
