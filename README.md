@@ -107,3 +107,10 @@ public Order createOrder(LocalDateTime currentDateTime){
 - いくつかのモジュールが協力する機能を統合的に検証するテスト
 - 一般的に小さい範囲の単体ですとのみでは機能全体の信頼性を保証できない
 - 豊富な単体テスト&大きい単位を検証する統合テスト
+### Persistence Layer Test
+- Persistence Layer Testは単体テストの特徴が強い
+- DataAccessの役割
+- ビジネス加工ロジックが含まれてはいけない、データに対するCRUDだけに集中したレイヤ
+#### @DataJpaTest
+- @DataJpaTestは@SpringBootTestより軽い
+- JPA関連ビンのみをコンテナに上げてテストできる
