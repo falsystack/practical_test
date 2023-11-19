@@ -6,10 +6,12 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import java.time.LocalDateTime;
 import jp.falsystack.cafekiosk.unit.beverages.Americano;
 import jp.falsystack.cafekiosk.unit.beverages.Latte;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class CafeKioskTest {
 
+  @DisplayName("飲み物一つを追加すると注文リストに含まれる")
   @Test
   void add() {
     var cafeKiosk = new CafeKiosk();
@@ -78,6 +80,23 @@ class CafeKioskTest {
   }
 
   @Test
+  @DisplayName("注文リストに含められた商品達の合計を計算することが出来る")
+  void calculateTotalPrice() {
+    // given
+    var cafeKiosk = new CafeKiosk();
+    var americano = new Americano();
+    var latte = new Latte();
+    cafeKiosk.add(americano);
+    cafeKiosk.add(latte);
+
+    // when
+    var totalPrice = cafeKiosk.calculateTotalPrice();
+
+    // then
+    assertThat(totalPrice).isEqualTo(850);
+  }
+
+  @Test
   void createOrder() {
     // 特定の条件でのみ成功するテスト -> よくないテスト
     var cafeKiosk = new CafeKiosk();
@@ -97,7 +116,7 @@ class CafeKioskTest {
     cafeKiosk.add(americano);
 
     // 特定の条件を外部から注入することによってテストがしやすくなる。
-    var order = cafeKiosk.createOrder(LocalDateTime.of(2023,11,18,10, 0));
+    var order = cafeKiosk.createOrder(LocalDateTime.of(2023, 11, 18, 10, 0));
 
     assertThat(order.getBeverages()).hasSize(1);
     assertThat(order.getBeverages().get(0).getName()).isEqualTo("Americano");
