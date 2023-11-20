@@ -1,4 +1,4 @@
-package jp.falsystack.cafekiosk.spring.api.controller;
+package jp.falsystack.cafekiosk.spring.api.controller.product;
 
 import java.util.List;
 import jp.falsystack.cafekiosk.spring.api.service.product.ProductService;

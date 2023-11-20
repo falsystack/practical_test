@@ -57,7 +57,45 @@ class ProductRepositoryTest {
             tuple("001", "Americano", SELLING),
             tuple("002", "Latte", HOLD)
         );
+  }
 
+  @Test
+  @DisplayName("商品番号リストで商品達を照会する")
+  void findAllByProductNumberIn() {
+    // given
+    var product1 = Product.builder()
+        .productNumber("001")
+        .type(ProductType.HANDMADE)
+        .sellingStatus(SELLING)
+        .name("Americano")
+        .price(400)
+        .build();
+    var product2 = Product.builder()
+        .productNumber("002")
+        .type(ProductType.HANDMADE)
+        .sellingStatus(HOLD)
+        .name("Latte")
+        .price(450)
+        .build();
+    var product3 = Product.builder()
+        .productNumber("003")
+        .type(ProductType.HANDMADE)
+        .sellingStatus(STOP_SELLING)
+        .name("Mocha")
+        .price(450)
+        .build();
+    productRepository.saveAll(List.of(product1, product2, product3));
+    // when
+    var products = productRepository.findAllByProductNumberIn(
+        List.of("001", "002"));
+
+    // then
+    assertThat(products).hasSize(2)
+        .extracting("productNumber", "name", "sellingStatus")
+        .containsExactlyInAnyOrder(
+            tuple("001", "Americano", SELLING),
+            tuple("002", "Latte", HOLD)
+        );
   }
 
 }
