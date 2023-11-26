@@ -124,3 +124,9 @@ public Order createOrder(LocalDateTime currentDateTime){
 // enum検証
 assertThat(order.getOrderStatus()).isEqualByComparingTo(OrderStatus.INIT);
 ```
+- 異なるレイヤーで類似な検証メソッドがある場合どちらも検証するのが良い
+- テストに`@Transactional`を使うと自動的にRollbackしてくれるので便利
+- テストで`@Transactional`を使う時はサイドエフェクトをよく知った上で使った方がいい
+  - テストコードに`@Transactional`をつけておくとプロダクションコードに`@Transactional`が付いてなくても動く
+  - 実際にはプロダクションコードに`@Transactional`が付いてあったらテストには`@Transactional`がいらなかったはず
+- `JpaRepository`を使用すると基本メソッド(`save`, `saveAll`, 等々)に`@Transactional`が付いている

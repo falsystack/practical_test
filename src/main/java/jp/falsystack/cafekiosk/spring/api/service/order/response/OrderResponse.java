@@ -10,10 +10,10 @@ import lombok.Getter;
 @Getter
 public class OrderResponse {
 
-  private Long id;
-  private int totalPrice;
-  private LocalDateTime registeredDateTime;
-  private List<ProductResponse> products;
+  private final Long id;
+  private final int totalPrice;
+  private final LocalDateTime registeredDateTime;
+  private final List<ProductResponse> products;
 
   @Builder
   public OrderResponse(Long id, int totalPrice, LocalDateTime registeredDateTime,
