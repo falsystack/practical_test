@@ -113,8 +113,10 @@ public Order createOrder(LocalDateTime currentDateTime){
 - DataAccessの役割
 - ビジネス加工ロジックが含まれてはいけない、データに対するCRUDだけに集中したレイヤ
 #### @DataJpaTest
-- @DataJpaTestは@SpringBootTestより軽い
+- `@DataJpaTest` は `@SpringBootTest` より軽い
+  - `@SpringBootTest`をお勧め
 - JPA関連ビンのみをコンテナに上げてテストできる
+- `@Transactional`が内部に付いているのでテストが終わった後自動的に `Rollback` してくれる
 ### Business Layer Test
 - Service Test(Business Layer + Persistence Layer)
 - ビジネスロジックを具現する役割
