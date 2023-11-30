@@ -132,3 +132,10 @@ assertThat(order.getOrderStatus()).isEqualByComparingTo(OrderStatus.INIT);
   - テストコードに`@Transactional`をつけておくとプロダクションコードに`@Transactional`が付いてなくても動く
   - 実際にはプロダクションコードに`@Transactional`が付いてあったらテストには`@Transactional`がいらなかったはず
 - `JpaRepository`を使用すると基本メソッド(`save`, `saveAll`, 等々)に`@Transactional`が付いている
+### Presentation Layer
+![presentation](src/main/resources/static/presentation_layer.png)
+- 外部世界のリクエストをいち早く受け取る階層
+- パラメーターに対する最小限の検証を行う
+- `Mock` : 代役、偽物
+- `MockMvc` : Mock(偽物)オブジェクトを使用してSpring MVCの動作を再現する事ができるテストフレームワーク
+

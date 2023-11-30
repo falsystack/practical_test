@@ -6,6 +6,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import java.time.LocalDateTime;
 import jp.falsystack.cafekiosk.unit.beverages.Americano;
 import jp.falsystack.cafekiosk.unit.beverages.Latte;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -96,6 +97,7 @@ class CafeKioskTest {
     assertThat(totalPrice).isEqualTo(850);
   }
 
+  @Disabled
   @Test
   void createOrder() {
     // 特定の条件でのみ成功するテスト -> よくないテスト
