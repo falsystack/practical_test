@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import jp.falsystack.cafekiosk.spring.api.controller.order.request.OrderCreateRequest;
+import jp.falsystack.cafekiosk.spring.api.service.order.request.OrderCreateServiceRequest;
 import jp.falsystack.cafekiosk.spring.api.service.order.response.OrderResponse;
 import jp.falsystack.cafekiosk.spring.domain.order.Order;
 import jp.falsystack.cafekiosk.spring.domain.order.OrderRepository;
@@ -42,7 +43,7 @@ public class OrderService {
    * optimistic lock / pessimistic lock / ...
    */
   @Transactional
-  public OrderResponse createOrder(OrderCreateRequest request, LocalDateTime registeredDateTime) {
+  public OrderResponse createOrder(OrderCreateServiceRequest request, LocalDateTime registeredDateTime) {
     var productNumbers = request.getProductNumbers();
     var products = findProductsBy(productNumbers);
 
