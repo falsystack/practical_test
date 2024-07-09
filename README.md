@@ -8,13 +8,14 @@
     - クラス又はメソッド
     - 外部に依存しない一番小さいテストの単位
 - 検証速度が早く、安定的
-- JavaではJuint5を使う
+- Java では JUint5 を使う
     - 単体テストの為のテストフレームワーク
     - XUnit - Kent Beck
-    - https://junit.org/junit5/
+        - https://junit.org/junit5/
 - AssertJ
-    - テストこーど作成を円滑に助けてくれるライブラリ
-    - 豊富なAPI
+    - テストコード作成を円滑に助けてくれるライブラリ
+    - 豊富なAPI、メソッドチェーン（Chaining）をサポートする
+    - https://joel-costigliola.github.io/assertj/
 
 ## テストケースの細分化
 
@@ -26,15 +27,15 @@
 
 ```java
 // テストしづらいコード
-public Order createOrder(){
-    var currentDateTime=LocalDateTime.now();
-    var currentTime=currentDateTime.toLocalTime();
-    }
+public Order createOrder() {
+  var currentDateTime = LocalDateTime.now();
+  var currentTime = currentDateTime.toLocalTime();
+}
 
 // テストし辛い領域を分離する。
-public Order createOrder(LocalDateTime currentDateTime){
-    var currentTime=currentDateTime.toLocalTime();
-    }
+public Order createOrder(LocalDateTime currentDateTime) {
+  var currentTime = currentDateTime.toLocalTime();
+}
 ```
 
 - 外部に分離することでテスト可能なコードが多くなる。
@@ -161,7 +162,9 @@ public Order createOrder(LocalDateTime currentDateTime){
 
 ```java
 // enum検証
-assertThat(order.getOrderStatus()).isEqualByComparingTo(OrderStatus.INIT);
+assertThat(order.getOrderStatus()).
+
+isEqualByComparingTo(OrderStatus.INIT);
 ```
 
 - 異なるレイヤーで類似な検証メソッドがある場合どちらも検証するのが良い
