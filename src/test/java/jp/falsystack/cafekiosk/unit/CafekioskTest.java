@@ -2,6 +2,7 @@ package jp.falsystack.cafekiosk.unit;
 
 import static org.assertj.core.api.Assertions.*;
 
+import java.time.LocalDateTime;
 import jp.falsystack.cafekiosk.unit.beverages.Americano;
 import jp.falsystack.cafekiosk.unit.beverages.Latte;
 import org.junit.jupiter.api.Test;
@@ -70,5 +71,42 @@ class CafekioskTest {
 
     cafekiosk.clear();
     assertThat(cafekiosk.getBeverages()).isEmpty();
+  }
+
+  //  @Test
+  void createOrder() {
+    var cafekiosk = new Cafekiosk();
+    var americano = new Americano();
+
+    cafekiosk.add(americano);
+
+    var order = cafekiosk.createOrder();
+
+    assertThat(order.getBeverages()).hasSize(1);
+    assertThat(order.getBeverages().get(0).getName()).isEqualTo("아메리카노");
+  }
+
+  @Test
+  void createOrderCurrentTime() {
+    var cafekiosk = new Cafekiosk();
+    var americano = new Americano();
+
+    cafekiosk.add(americano);
+
+    var order = cafekiosk.createOrder(LocalDateTime.of(2024, 7, 10, 22, 0));
+
+    assertThat(order.getBeverages()).hasSize(1);
+    assertThat(order.getBeverages().get(0).getName()).isEqualTo("아메리카노");
+  }
+
+  @Test
+  void createOrderOutsideOpenTime() {
+    var cafekiosk = new Cafekiosk();
+    var americano = new Americano();
+
+    cafekiosk.add(americano);
+
+    assertThatThrownBy(() -> cafekiosk.createOrder(LocalDateTime.of(2024, 7, 10, 9, 59)))
+        .isInstanceOf(IllegalArgumentException.class);
   }
 }

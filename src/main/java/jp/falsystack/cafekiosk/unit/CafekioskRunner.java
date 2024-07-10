@@ -1,5 +1,6 @@
 package jp.falsystack.cafekiosk.unit;
 
+import java.time.LocalDateTime;
 import jp.falsystack.cafekiosk.unit.beverages.Americano;
 import jp.falsystack.cafekiosk.unit.beverages.Latte;
 
@@ -14,5 +15,7 @@ public class CafekioskRunner {
 
     var totalPrice = cafekiosk.calculateTotalPrice();
     System.out.println("총 주문가격 = " + totalPrice);
+
+    var order = cafekiosk.createOrder(LocalDateTime.now());
   }
 }

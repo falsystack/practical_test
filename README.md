@@ -39,6 +39,8 @@ public Order createOrder(LocalDateTime currentDateTime) {
 }
 ```
 
+![testable](src/main/resources/static/testable_code.png)
+
 - 外部に分離することでテスト可能なコードが多くなる。
 - テストをしようとする領域とテストがし辛い領域を区分することが大事だ。
 
@@ -48,6 +50,12 @@ public Order createOrder(LocalDateTime currentDateTime) {
     - 日付、時間、ランダム数、グローバル変数、クライアントのインプット値等々
 - 外部領域に影響を与えるコード
     - std.out, メッセージ発送、データベースに記録等々
+
+### テストし優しい例
+
+- 同じ入力に対していつも同じ結果
+- 外部と切断された状態
+- 純粋関数
 
 ## TDD (Test Driven Development)
 
