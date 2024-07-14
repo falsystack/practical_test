@@ -73,6 +73,20 @@ class CafekioskTest {
     assertThat(cafekiosk.getBeverages()).isEmpty();
   }
 
+  @Test
+  void calculateTotalPrice() {
+    var cafekiosk = new Cafekiosk();
+    var americano = new Americano();
+    var latte = new Latte();
+
+    cafekiosk.add(americano);
+    cafekiosk.add(latte);
+
+    var totalPrice = cafekiosk.calculateTotalPrice();
+
+    assertThat(totalPrice).isEqualTo(8500);
+  }
+
   //  @Test
   void createOrder() {
     var cafekiosk = new Cafekiosk();

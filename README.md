@@ -84,6 +84,10 @@ public Order createOrder(LocalDateTime currentDateTime) {
 - 特定のテストケースのみを検証する可能性が高い（ハッピーケースのみ作成するとか）
 - 誤った実装を見つける可能性が低くなる
 
+### TDD：観点の変か
+
+- クライアント観点でのフィードバックを貰える Test Driven
+
 ## テストは文書だ
 
 - プロダクション機能を説明するテストコード
