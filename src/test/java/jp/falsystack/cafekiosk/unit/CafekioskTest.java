@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.*;
 import java.time.LocalDateTime;
 import jp.falsystack.cafekiosk.unit.beverages.Americano;
 import jp.falsystack.cafekiosk.unit.beverages.Latte;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class CafekioskTest {
@@ -18,6 +19,8 @@ class CafekioskTest {
     System.out.println(">>> 담긴 음료 : " + cafekiosk.getBeverages().get(0).getName());
   }
 
+//  @DisplayName("음료 1개 추가 테스트")
+  @DisplayName("음료 1개 추가하면 주문 목록에 담긴다.")
   @Test
   void add() {
     Cafekiosk cafekiosk = new Cafekiosk();
@@ -73,8 +76,10 @@ class CafekioskTest {
     assertThat(cafekiosk.getBeverages()).isEmpty();
   }
 
+  @DisplayName("주문 목록에 담긴 상품들의 총 금액을 계산할 수 있다.")
   @Test
   void calculateTotalPrice() {
+    // given
     var cafekiosk = new Cafekiosk();
     var americano = new Americano();
     var latte = new Latte();
@@ -82,8 +87,10 @@ class CafekioskTest {
     cafekiosk.add(americano);
     cafekiosk.add(latte);
 
+    // when
     var totalPrice = cafekiosk.calculateTotalPrice();
 
+    // then
     assertThat(totalPrice).isEqualTo(8500);
   }
 

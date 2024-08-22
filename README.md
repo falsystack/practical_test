@@ -84,7 +84,7 @@ public Order createOrder(LocalDateTime currentDateTime) {
 - 特定のテストケースのみを検証する可能性が高い（ハッピーケースのみ作成するとか）
 - 誤った実装を見つける可能性が低くなる
 
-### TDD：観点の変か
+### TDD：観点の変化
 
 - クライアント観点でのフィードバックを貰える Test Driven
 
@@ -103,7 +103,7 @@ public Order createOrder(LocalDateTime currentDateTime) {
 ```
 
 - ~テストという書き方はやめた方がいい
-- 名刺の並びではなく文章で書こう
+- 名詞の並びではなく文章で書こう
 - テストの結果まで記述するのが良い
 
 ```java
