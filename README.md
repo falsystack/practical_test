@@ -149,7 +149,7 @@ public Order createOrder(LocalDateTime currentDateTime) {
 ### 統合テスト(Integration Test)
 
 - いくつかのモジュールが協力する機能を統合的に検証するテスト
-- 一般的に小さい範囲の単体ですとのみでは機能全体の信頼性を保証できない
+- 一般的に小さい範囲の単体テストのみでは機能全体の信頼性を保証できない
 - 豊富な単体テスト&大きい単位を検証する統合テスト
 
 ### Persistence Layer
