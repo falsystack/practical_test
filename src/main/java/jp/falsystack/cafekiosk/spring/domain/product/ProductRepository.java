@@ -10,10 +10,19 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     /**
      * expected
-     * <p>
+     *
      * select *
      * from product p
      * where p.product_selling_status in (?...)
      */
     List<Product> findAllBySellingStatusIn(List<ProductSellingStatus> sellingStatus);
+
+    /**
+     * expected
+     * <p>
+     * select *
+     * from product p
+     * where p.product_number in (?...)
+     */
+    List<Product> findAllByProductNumberIn(List<String> productNumbers);
 }
